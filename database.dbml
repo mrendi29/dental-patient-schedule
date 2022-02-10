@@ -1,0 +1,25 @@
+Table user {
+    username varchar(18) [primary key, unique, not null]
+    name varchar
+    lastname varchar
+    role char
+    created_at timestamp
+    password_hash varchar
+}
+
+Table appointment {
+    id integer [primary key]
+    ts timestamp
+    dentist varchar [ref: - user.username]
+    patient varchar [ref: - user.username]
+    patient_accepted boolean
+    notes text [note: 'Content of the appointment']
+}
+
+Table records {
+    id integer [pk,not null, increment]
+    patient varchar [ref: - user.username]
+    dentist varchar [ref: - user.username]
+    appointments id [ref: < appointment.id]
+}
+

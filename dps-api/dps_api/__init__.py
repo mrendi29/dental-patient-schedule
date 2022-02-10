@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import find_modules, import_string
 from werkzeug.local import LocalProxy
-from .db.model import db
+from db.model import db
 
 
 def register_db(app):
