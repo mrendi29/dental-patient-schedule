@@ -1,25 +1,73 @@
 Table user {
-    username varchar(18) [primary key, unique, not null]
-    name varchar
-    lastname varchar
-    role char
+    user_id int [pk,increment,not null]
+    username varchar(18) [unique]
     created_at timestamp
-    password_hash varchar
+    password_hash varchar(256)
+    indexes{
+        user_id
+        username
+    }
+}
+
+Table dentist {
+    dentist_id int [pk, increment, not null]
+    name varchar [not null]
+    last_name varchar [not null]
+    user_id int [ref: - user.user_id]
+    indexes{
+        dentist_id
+        name
+        last_name
+        user_id
+    }
+}
+
+Table patient {
+    patient_id int [pk, increment,not null]
+    name varchar [not null]
+    last_name varchar [not null]
+    birthdate timestamp
+    gender varchar(1)
+    email varchar(45)
+    cellphone varchar(45)
+    user_id int [ref: - user.user_id]
+    indexes{
+        patient_id
+        name
+        last_name
+        user_id
+    }
 }
 
 Table appointment {
-    id integer [primary key]
-    ts timestamp
-    dentist varchar [ref: - user.username]
-    patient varchar [ref: - user.username]
+    appointment_id int [pk, increment,not null]
+    start_time timestamp
     patient_accepted boolean
+    completed boolean
+    description text 
     notes text [note: 'Content of the appointment']
+    dentist_id int [ref: - dentist.dentist_id]
+    patient_id int [ref: - patient.patient_id]
+    indexes{
+        appointment_id
+        patient_id
+        dentist_id
+        start_time
+    }
 }
 
 Table records {
-    id integer [pk,not null, increment]
-    patient varchar [ref: - user.username]
-    dentist varchar [ref: - user.username]
-    appointments id [ref: < appointment.id]
+    record_id int [pk,not null, increment]
+    dentist_id int [ref: - dentist.dentist_id]
+    patient_id int [ref: - patient.patient_id]
+    appointment_id int [ref: < appointment.appointment_id]
+    description text 
+    notes text [note: 'Content of the appointment']
+    indexes{
+        record_id
+        appointment_id
+        patient_id
+        dentist_id
+    }
 }
 
