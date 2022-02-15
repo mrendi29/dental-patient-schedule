@@ -11,8 +11,8 @@ Table user {
 
 Table dentist {
     dentist_id int [pk, increment, not null]
-    name varchar [not null]
-    last_name varchar [not null]
+    name  varchar(18) [not null]
+    last_name  varchar(18) [not null]
     user_id int [ref: - user.user_id]
     indexes{
         dentist_id
@@ -24,8 +24,8 @@ Table dentist {
 
 Table patient {
     patient_id int [pk, increment,not null]
-    name varchar [not null]
-    last_name varchar [not null]
+    name  varchar(18) [not null]
+    last_name  varchar(18) [not null]
     birthdate timestamp
     gender varchar(1)
     email varchar(45)
