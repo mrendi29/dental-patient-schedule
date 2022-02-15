@@ -6,18 +6,25 @@ db: SQLAlchemyStub = cast(SQLAlchemyStub, SQLAlchemy())
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
-
-    def __repr__(self):
-        return "<User {}>".format(self.username)
+    __tablename__ = "user"
+    __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
-class Patients:
-    pass
+class Dentist:
+    __tablename__ = "dentist"
+    __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
+
+
+class Patient:
+    __tablename__ = "patient"
+    __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
+
+
+class Appointment:
+    __tablename__ = "appointment"
+    __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
 class Records:
-    pass
+    __tablename__ = "records"
+    __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}

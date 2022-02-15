@@ -1,3 +1,9 @@
+"""
+In order to resolve autocomplete issues 
+this code was used from: https://github.com/WilsonPhooYK/udemy-automated-software-testing-python/tree/main/section6_7/typings 
+to resolve  https://github.com/microsoft/pylance-release/issues/187
+
+"""
 from typing import Any
 from flask_sqlalchemy import SQLAlchemy as SQLAlchemyBase, Model as ModelBase
 
