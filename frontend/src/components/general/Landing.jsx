@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
     render(){
         return(
-            <div>
+            <div className='base-container'>
                 <div className='header'>
-                    Landing page is here
+                    This is the landing page, you can
+                    <Link className='redirect' to='/register'>
+                        register
+                    </Link>
+                    or
+                    <Link className='redirect' to='/login'>
+                        login
+                    </Link>
                 </div>
             </div>
         );
