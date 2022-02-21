@@ -3,7 +3,10 @@ from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import find_modules, import_string
 from werkzeug.local import LocalProxy
-from db.model import db
+
+# from .model import db
+
+# db = SQLAlchemy()
 
 
 def register_db(app):
@@ -11,6 +14,10 @@ def register_db(app):
     # app.db = create_engine(db_url, pool_pre_ping=True)
     # app.db = SQLAlchemy(app)
     pass
+
+
+def register_models(app):
+    from ..db import Appointment, User, Dentist, Patient, Records
 
 
 def register_blueprints(app):
@@ -25,13 +32,25 @@ def create_app(config=None):
     app.config.update = config
     app.secret_key = "super secret key"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = config.get("SQLALCHEMY_DATABASE_URI")
+    # print(app.config)
     register_blueprints(app)
-
-    db.init_app(app)
+    # register_models(app)
+    print(config)
+    # with app.app_context():
+    # db.app = app
+    # db.init_app(app)
     # register_db(app)
+    db = SQLAlchemy()
+
+    # db.app = app
+    db.init_app(app)
+
+    # db.create_all()
+    app.db = db
 
     return app
 
 
 # TODO: Determine if this is needed in deployment.
-# db = LocalProxy(lambda: current_app.db)
+db = LocalProxy(lambda: current_app.db)

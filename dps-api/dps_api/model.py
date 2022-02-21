@@ -1,8 +1,7 @@
+from . import db
 from flask_sqlalchemy import SQLAlchemy
-from typing import cast
-from .typings.sql_alchemy import SQLAlchemy as SQLAlchemyStub
 
-db: SQLAlchemyStub = cast(SQLAlchemyStub, SQLAlchemy())
+# db.Model = db.Model.metadata.reflect(db.engine)
 
 
 class User(db.Model):
@@ -10,21 +9,21 @@ class User(db.Model):
     __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
-class Dentist:
+class Dentist(db.Model):
     __tablename__ = "dentist"
     __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
-class Patient:
+class Patient(db.Model):
     __tablename__ = "patient"
     __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
-class Appointment:
+class Appointment(db.Model):
     __tablename__ = "appointment"
     __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
 
 
-class Records:
+class Records(db.Model):
     __tablename__ = "records"
     __table_args__ = {"autoload": True, "schema": "public", "autoload_with": db.engine}
