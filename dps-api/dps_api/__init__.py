@@ -6,7 +6,8 @@ from werkzeug.local import LocalProxy
 
 # from .model import db
 
-# db = SQLAlchemy()
+db = SQLAlchemy()
+# db = LocalProxy(lambda: current_app.db)
 
 
 def register_db(app):
@@ -41,11 +42,13 @@ def create_app(config=None):
     # db.app = app
     # db.init_app(app)
     # register_db(app)
-    db = SQLAlchemy()
+    # db = SQLAlchemy()
+    db.app = app
 
-    # db.app = app
     db.init_app(app)
-
+    with app.app_context():
+        db.Model.metadata.reflect(db.engine)
+        from dps_api import model
     # db.create_all()
     app.db = db
 
@@ -53,4 +56,4 @@ def create_app(config=None):
 
 
 # TODO: Determine if this is needed in deployment.
-db = LocalProxy(lambda: current_app.db)
+# db = LocalProxy(lambda: current_app.db)

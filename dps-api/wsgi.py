@@ -1,6 +1,6 @@
 from dps_api import create_app
 import os
-from model import db
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 

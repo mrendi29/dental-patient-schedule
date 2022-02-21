@@ -1,6 +1,7 @@
 # from dps_api.model import User
 from flask import Blueprint, current_app
-from ..model import User
+
+# from ..model import User
 from sqlalchemy.ext.automap import automap_base
 from dps_api import db
 
