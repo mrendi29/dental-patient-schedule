@@ -1,11 +1,10 @@
-from abc import abstractproperty
-from calendar import c
-from email.mime import application
 from dps_api import create_app
 import os
 
 app = create_app(
-    config={"SQLALCHEMY_DATABASE_URI": os.getenv("SQLALCHEMY_DATABASE_URL")}
+    config={
+        "SQLALCHEMY_DATABASE_URI": os.getenv("SQLALCHEMY_DATABASE_URI"),
+        "SQLALCHEMY_TRACK_MODIFICATIONS": False,
+    }
 )
-
-application = app
+app.app_context().push()

@@ -1,16 +1,14 @@
-from flask import Flask, current_app, g
-from sqlalchemy import create_engine
+from flask import Flask
+from typing import cast
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import find_modules, import_string
 from werkzeug.local import LocalProxy
-from db.model import db
+from db_utils.typings.sql_alchemy import SQLAlchemy as SQLAlchemyStub
 
 
-def register_db(app):
-    # db_url = app.config.get("SQLALCHEMY_DATABASE_URI")
-    # app.db = create_engine(db_url, pool_pre_ping=True)
-    # app.db = SQLAlchemy(app)
-    pass
+# db = SQLAlchemy()
+db: SQLAlchemyStub = cast(SQLAlchemyStub, SQLAlchemy())
+# db = LocalProxy(lambda: current_app.db)
 
 
 def register_blueprints(app):
@@ -24,11 +22,20 @@ def create_app(config=None):
     app = Flask(__name__)
     app.config.update = config
     app.secret_key = "super secret key"
+
+    # For some weird reason config is not getting updated and needs to be specified again here
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = config.get("SQLALCHEMY_DATABASE_URI")
     register_blueprints(app)
 
+    db.app = app
+
     db.init_app(app)
-    # register_db(app)
+    with app.app_context():
+        # db.Model.metadata.reflect(db.engine)
+        from dps_api import model
+
+    app.db = db
 
     return app
 
