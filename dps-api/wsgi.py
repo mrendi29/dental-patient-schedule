@@ -1,9 +1,6 @@
 from dps_api import create_app
 import os
 
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
 app = create_app(
     config={
         "SQLALCHEMY_DATABASE_URI": os.getenv("SQLALCHEMY_DATABASE_URI"),
@@ -11,5 +8,3 @@ app = create_app(
     }
 )
 app.app_context().push()
-
-# application = app
