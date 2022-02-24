@@ -22,6 +22,8 @@ def create_app(config=None):
     app = Flask(__name__)
     app.config.update = config
     app.secret_key = "super secret key"
+
+    # For some weird reason config is not getting updated and needs to be specified again here
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_DATABASE_URI"] = config.get("SQLALCHEMY_DATABASE_URI")
     register_blueprints(app)
