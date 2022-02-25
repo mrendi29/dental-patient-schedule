@@ -4,11 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import find_modules, import_string
 from werkzeug.local import LocalProxy
 from db_utils.typings.sql_alchemy import SQLAlchemy as SQLAlchemyStub
-
+from flask_httpauth import HTTPBasicAuth
 
 # db = SQLAlchemy()
 db: SQLAlchemyStub = cast(SQLAlchemyStub, SQLAlchemy())
 # db = LocalProxy(lambda: current_app.db)
+
+auth = HTTPBasicAuth()
 
 
 def register_blueprints(app):

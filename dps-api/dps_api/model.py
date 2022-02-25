@@ -1,5 +1,12 @@
 from datetime import datetime
 from dps_api import db
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import (
+    BadSignature,
+    SignatureExpired,
+    TimedJSONWebSignatureSerializer as Serializer,
+)
+from flask import current_app as app
 
 
 class User(db.Model):
@@ -16,11 +23,32 @@ class User(db.Model):
         "Patient", back_populates="user", lazy=True, uselist=False
     )
 
-    def __init__(self, username, email, password, **kwargs):
+    def generate_auth_token(self, expiration=3600):
+        s = Serializer(app.config["SECRET_KEY"], expires_in=expiration)
+        return s.dumps({"user_id": self.user_id})
+
+    @staticmethod
+    def verify_auth_token(token):
+        s = Serializer(app.config["SECRET_KEY"])
+
+        try:
+            data = s.loads(token)
+        except SignatureExpired:
+            return None  # valid token, but expired
+        except BadSignature:
+            return None  # invalid token
+        user = User.query.get(data["user_id"])
+
+        return user
+
+    def __init__(self, email, username, password, **kwargs):
         super(User, self).__init__(**kwargs)
-        self.username = username
         self.email = email
-        self.password_hash = password
+        self.username = username
+        self.password_hash = pwd_context.encrypt(password)
+
+    def verify_password(self, password):
+        return pwd_context.verify(password, self.password_hash)
 
     def __repr__(self) -> str:
         return f"User -> {self.username}"
