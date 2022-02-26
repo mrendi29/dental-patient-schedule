@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 app = create_app(
     config={
-        "SQLALCHEMY_DATABASE_URI": os.getenv("SQLALCHEMY_DATABASE_URI"),
+        "SQLALCHEMY_DATABASE_URI": os.getenv("DATABASE_URL")
+        or os.getenv("SQLALCHEMY_DATABASE_URI"),
         "SQLALCHEMY_TRACK_MODIFICATIONS": False,
     }
 )
@@ -16,7 +17,8 @@ db.drop_all(app=app)
 db.create_all(
     app=create_app(
         config={
-            "SQLALCHEMY_DATABASE_URI": os.getenv("SQLALCHEMY_DATABASE_URI"),
+            "SQLALCHEMY_DATABASE_URI": os.getenv("DATABASE_URL")
+            or os.getenv("SQLALCHEMY_DATABASE_URI"),
             "SQLALCHEMY_TRACK_MODIFICATIONS": False,
         }
     )
