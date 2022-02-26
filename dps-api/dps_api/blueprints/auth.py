@@ -11,17 +11,30 @@ https://blog.miguelgrinberg.com/post/restful-authentication-with-flask
 
 
 @bp.route("/signin", methods=["POST"])
-@auth.login_required
 def sign_in():
+    form = request.form
+    username = form.get("username")
+    password = form.get("password")
+    user = User.verify_auth_token(username)
+    if not user:
+        # try to authenticate with username/password
+        user = User.query.filter_by(username=username).first()
+        if not user or not user.verify_password(password):
+            return (jsonify({"error": "Authentication error"}), 401)
+    g.user = user
     token = g.user.generate_auth_token(3600)
-    return jsonify({"token": token.decode("ascii"), "duration": 3600})
+    return (
+        jsonify({"token": token.decode("ascii"), "duration": 3600, "id": user.user_id}),
+        201,
+    )
 
 
 @bp.route("/signup", methods=["POST"])
 def sign_up():
-    username = request.json.get("username")
-    email = request.json.get("email")
-    password = request.json.get("password")
+    form = request.form
+    username = form.get("username")
+    email = form.get("email")
+    password = form.get("password")
     if username is None or password is None:
         abort(400)  # missing arguments
     if User.query.filter_by(username=username).first() is not None:
@@ -38,11 +51,28 @@ def sign_up():
 
 
 @bp.route("/users/<int:id>")
+@auth.login_required
 def get_user(id):
     user = User.query.get(id)
     if not user:
         abort(400)
     return jsonify({"username": user.username})
+
+
+@bp.route("/users/<int:id>/password_reset")
+@auth.login_required
+def password_reset(id):
+    user = User.query.get(id)
+    form = request.form
+    current_password = form.get("current_password")
+    new_pass = form.get("new_password")
+
+    if user is not None and user.verify_password(current_password):
+        user.hash_password(new_pass)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"message": "Success"}), 201
+    return abort(401)
 
 
 @auth.verify_password

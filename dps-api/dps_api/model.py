@@ -50,6 +50,9 @@ class User(db.Model):
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_hash)
 
+    def hash_password(self, password):
+        self.password_hash = pwd_context.encrypt(password)
+
     def __repr__(self) -> str:
         return f"User -> {self.username}"
 
