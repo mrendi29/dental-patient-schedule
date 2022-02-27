@@ -53,6 +53,10 @@ class User(db.Model):
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
 
+    # TODO: Double check logic.
+    def is_dentist(self, dentist_id):
+        return Dentist.query.get(dentist_id).user_id == self.user_id
+
     def __repr__(self) -> str:
         return f"User -> {self.username}"
 
@@ -70,6 +74,8 @@ class Dentist(db.Model):
     appointments = db.relationship("Appointment", back_populates="dentist", lazy=True)
     records = db.relationship("Record", back_populates="dentist", lazy=True)
 
+    patients = db.relationship("Patient", back_populates="dentist", lazy=True)
+
     def __init__(self, name, last_name, **kwargs):
         super(Dentist, self).__init__(**kwargs)
         self.name = name
@@ -85,7 +91,6 @@ class Patient(db.Model):
     name = db.Column(db.String(18), nullable=False, index=True)
     last_name = db.Column(db.String(18), nullable=False, index=True)
     birth_date = db.Column(db.DateTime, nullable=False)
-    gender = db.Column(db.String(1), nullable=False)
     cellphone = db.Column(db.String(45), nullable=False)
     user_id = db.Column(
         db.Integer, db.ForeignKey("user.user_id"), nullable=False, index=True
@@ -95,12 +100,18 @@ class Patient(db.Model):
     appointments = db.relationship("Appointment", back_populates="patient", lazy=True)
     records = db.relationship("Record", back_populates="patient", lazy=True)
 
-    def __init__(self, name, last_name, birth_date, gender, cellphone, **kwargs):
+    dentist_id = db.Column(
+        db.Integer, db.ForeignKey("dentist.dentist_id"), nullable=True
+    )
+    dentist = db.relationship(
+        "Dentist", back_populates="patients", lazy=True, uselist=False
+    )
+
+    def __init__(self, name, last_name, birth_date, cellphone, **kwargs):
         super(Patient, self).__init__(**kwargs)
         self.name = name
         self.last_name = last_name
         self.birth_date = birth_date
-        self.gender = gender
         self.cellphone = cellphone
 
     def __repr__(self) -> str:
@@ -129,7 +140,7 @@ class Appointment(db.Model):
     record_id = db.Column(
         db.Integer,
         db.ForeignKey("record.record_id"),
-        nullable=False,
+        nullable=True,
         index=True,
     )
     record = db.relationship(
@@ -164,7 +175,7 @@ class Record(db.Model):
     dentist = db.relationship(
         "Dentist", back_populates="records", lazy=True, uselist=False
     )
-    appointments = db.relationship("Appointment", back_populates="record", lazy=False)
+    appointments = db.relationship("Appointment", back_populates="record", lazy=True)
 
     def __init__(self, description, notes, **kwargs):
         super(Record, self).__init__(**kwargs)

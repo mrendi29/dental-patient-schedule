@@ -5,9 +5,11 @@ from werkzeug.security import generate_password_hash
 from dotenv import load_dotenv
 
 load_dotenv()
-db_url = os.getenv("DATABASE_URL").replace("://", "ql://", 1) or os.getenv(
-    "SQLALCHEMY_DATABASE_URI"
-)
+if os.getenv("FLASK_ENV", "development"):
+    db_url = os.getenv("SQLALCHEMY_DATABASE_URI")
+else:
+    os.getenv("DATABASE_URL").replace("://", "ql://", 1)
+
 app = create_app(
     config={
         "SQLALCHEMY_DATABASE_URI": db_url,
