@@ -11,8 +11,6 @@ import Landing from './components/general/Landing'
 import Login from './components/general/Login'
 import Register from './components/general/Register'
 
-
-
 const App = () => {
   return(
     <div>

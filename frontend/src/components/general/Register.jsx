@@ -44,67 +44,57 @@ class Register extends Component {
     render(){
         let { fullName, username, email, password } = this.state;
         return(
-            <div className='base-container'>
+            <body>
                 <div className='container'>
-                    <div className='header'>Register</div>
-
-                    <div className='content'>
-                        <div className='form'>
-                            <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="full name">Full Name:</label>
-                                    <input type = 'text'
-                                    placeholder='Name'
-                                    id='fullName'
-                                    onChange={this.onChange}
-                                    value={fullName}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="username">Username:</label>
-                                    <input type = 'text'
-                                    placeholder='Username'
-                                    id='username'
-                                    onChange={this.onChange}
-                                    value={username}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="email">Email:</label>
-                                    <input type = 'text'
-                                    placeholder='Email'
-                                    id='email'
-                                    onChange={this.onChange}
-                                    value={email}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="password">Password:</label>
-                                    <input type = 'password'
-                                    placeholder='Password'
-                                    id='password'
-                                    onChange={this.onChange}
-                                    value={password}
-                                    />
-                                </div>
-
-                                <input type='submit' className='btn' value='Register'/>
-
-                                <div className='text-center'>
-                                    Already have an account? 
-                                    <Link className='redirect' to='/login'>
-                                        Login here
-                                    </Link>
-                                </div>
-
-                            </form>
+                    <header>Register</header>
+                    <form onSubmit={this.onSubmit}>
+                        <div class="input-field">
+                            <input type="text"
+                                required
+                                id='fullName'
+                                onChange={this.onChange}
+                                value={fullName}
+                            />
+                            <label>Full Name</label>
                         </div>
+                        <div class="input-field">
+                            <input type="text"
+                                required
+                                id='username'
+                                onChange={this.onChange}
+                                value={username}
+                            />
+                            <label>Username</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text"
+                                required
+                                id='email'
+                                onChange={this.onChange}
+                                value={email}
+                            />
+                            <label>Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="pswrd"
+                                type="password"
+                                id='password'
+                                required
+                                onChange={this.onChange}
+                                value={password}
+                            />
+                            <label>Password</label>
+                        </div>
+                        <div class="button">
+                            <div class="inner"></div>
+                            <input type="submit" value='REGISTER' />
+                        </div>
+                    </form>
+                    <div class="signup">
+                        Already a member? <a href="/login">Login now</a>
                     </div>
                 </div>
-            </div>
+            </body>
         );
     }
 }

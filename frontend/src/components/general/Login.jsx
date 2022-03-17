@@ -37,54 +37,53 @@ class Login extends Component {
         let { username, password } = userData;
 
         // call login authtencator here
+        console.log('redirecting')
+
+        //this.props.history.push('/');
 
     }
 
+    
+
     render(){
         let { username, password } = this.state
+
         return(
-            <div className='base-container'>
+            <body>
                 <div className='container'>
-                    <div className='header'>Login</div>
-
-                    <div className='content'>
-                        <div className='form'>
-                            <form onSubmit={this.onSubmit}>
-                                <div className='form-group'>
-                                    <label htmlFor="username">Username:</label>
-                                    <input type='text'
-                                        placeholder='Username'
-                                        id='username'
-                                        className='text-input'
-                                        onChange={this.onChange}
-                                        value={username}
-                                    />
-                                </div>
-
-                                <div className='form-group'>
-                                    <label htmlFor="password">Password:</label>
-                                    <input type='text'
-                                        placeholder='Password'
-                                        id='password'
-                                        className='text-input'
-                                        onChange={this.onChange}
-                                        value={password}
-                                    />
-                                </div>
-
-                                <input type="submit" className='btn' value='Log In' />
-
-                                <div className='text-center'>
-                                    Don't have an account yet? 
-                                    <Link className='redirect' to='/register'>
-                                        Register here
-                                    </Link>
-                                </div>
-                            </form>
+                    <header>Login</header>
+                    <form onSubmit={this.onSubmit}>
+                        <div class="input-field">
+                            <input type="text"
+                                required
+                                id='username'
+                                onChange={this.onChange}
+                                value={username}
+                            />
+                            <label>Email or Username</label>
                         </div>
+                        <div class="input-field">
+                            <input class="pswrd"
+                                type="password"
+                                id='password'
+                                required
+                                onChange={this.onChange}
+                                value={password}
+                            />
+                            <label>Password</label>
+                        </div>
+                        <div class="button">
+                            <div class="inner"></div>
+                            <a href="/register">
+                                <input type="submit" value='LOGIN' />
+                            </a>
+                        </div>
+                    </form>
+                    <div class="signup">
+                        Not a member? <a href="/register">Signup now</a>
                     </div>
                 </div>
-            </div>
+            </body>
         );
     }
 }
