@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 class Register extends Component {
@@ -39,6 +39,13 @@ class Register extends Component {
         // later on for registering the user
         //this.props.registerUser(userData, this.props.history);
 
+    }
+
+    
+
+    handleClick = () => {
+        const navigate = useNavigate();
+        navigate('/login');
     }
 
     render(){
@@ -87,7 +94,10 @@ class Register extends Component {
                         </div>
                         <div class="button">
                             <div class="inner"></div>
-                            <input type="submit" value='REGISTER' />
+                            {/* <input type="submit" value='REGISTER' /> */}
+                            <div className="rigged-reg">
+                                <a href="/login">REGISTER</a>
+                            </div>
                         </div>
                     </form>
                     <div class="signup">

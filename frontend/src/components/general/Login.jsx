@@ -74,13 +74,17 @@ class Login extends Component {
                         </div>
                         <div class="button">
                             <div class="inner"></div>
-                            <a href="/register">
-                                <input type="submit" value='LOGIN' />
-                            </a>
+                            {/* <input type="submit" value='LOGIN' /> */}
+                            <div className="rigged-reg">
+                                <a href="/dashboard">LOGIN</a>
+                            </div>
                         </div>
                     </form>
                     <div class="signup">
                         Not a member? <a href="/register">Signup now</a>
+                    </div>
+                    <div class="rigged">
+                        Doctor login <a href="/login">Here</a>
                     </div>
                 </div>
             </body>
