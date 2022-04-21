@@ -479,7 +479,7 @@ form .button{
   color: #202020;
 }
 
-.pooper{
+.mini-sec{
   margin-top: 24px;
   display: flex;
   flex-direction: row;
@@ -490,7 +490,7 @@ form .button{
   color: #696969;
 }
 
-.cunt{
+.inf-desc{
   font-size: 14px;
   margin-left: 10px;
   font-weight:  600;
@@ -507,7 +507,7 @@ form .button{
   margin-top: 24px;
 }
 
-.tit{
+.title{
   display: flex;
   flex-direction: row;
 }
@@ -530,7 +530,7 @@ form .button{
   flex-direction: row;
 }
 
-.fart{
+.mini-sec-row{
   margin-right: 30px;
 }
 
@@ -540,7 +540,7 @@ form .button{
   color: #1693e0;
 }
 
-.blacc{
+.info-tag-desc-wrap{
   margin-top: 10px;
   background: #112868;
   color: #fff;
@@ -557,25 +557,25 @@ form .button{
   border: none;
 }
 
-.nigg{
+.info-tag-wrap{
   margin-top: 10px;
   color: rgb(0, 0, 0);
   font-size: 12px;
 }
 
-.smol-pp{
+.section-break{
   background-color: #c7c7c7;
   height: 1px;
   border: none;
 }
 
-.penis{
+.info-tag-desc{
   display: flex;
   flex-direction: row;
   color: #333333;
   font-size: 12px;
 }
 
-#fake{
+#icon{
   margin-left: 5px;
 }
