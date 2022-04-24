@@ -424,7 +424,7 @@ form .button{
   font-size: 16px;
  }
 
- .profilee{
+ .base{
     z-index: -1;
     position: fixed;
     height: 100%;
@@ -436,7 +436,7 @@ form .button{
     z-index: 100 !important;
 }
 
-.profilee .text{
+.base .text{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 32px;
   font-weight: 500;
@@ -446,7 +446,7 @@ form .button{
   margin-bottom: 24px;
 }
 
-.sidebar.active ~ .profilee{
+.sidebar.active ~ .base{
   /* width: calc(100% - 240px); */
   left: 240px;
 }
@@ -578,4 +578,15 @@ form .button{
 
 #icon{
   margin-left: 5px;
+}
+
+/*
+Calendar
+*/
+
+.calendar{
+  background-color: #ffffff;
+  overflow: auto;
+  height: 80%;
+  position: absolute;
 }

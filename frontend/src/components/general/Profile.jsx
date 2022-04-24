@@ -2,7 +2,7 @@
 const Profile = () => {
 
     return(
-        <div class="profilee">
+        <div class="base">
             <div class="text">Profile</div>
             <div className="cards">
                 <div className="topcard">
