@@ -42,25 +42,25 @@ const Profile = () => {
                             <div className="mini-sec-row">
                                 <div className="info-tag">Last visit</div>
                                 <div className="info-tag-desc-wrap">
-                                    <div className="butttts"> March, 10, 2022</div>
+                                    <div className="butttts">March, 10, 2022</div>
                                 </div>
                             </div>
                             <div className="mini-sec-row">
                                 <div className="info-tag">Next Visit</div>
                                 <div className="info-tag-desc-wrap">
-                                    <div className="butttts"> March, 10, 2022</div>
+                                    <div className="butttts">March, 17, 2022</div>
                                 </div>
                             </div>
                             <div className="mini-sec-row">
                                 <div className="info-tag">Patient ID</div>
                                 <div className="info-tag-desc-wrap">
-                                    <div className="butttts"> March, 10, 2022</div>
+                                    <div className="butttts">#00380544</div>
                                 </div>
                             </div>
                             <div className="mini-sec-row">
                                 <div className="info-tag">SSN</div>
                                 <div className="info-tag-desc-wrap">
-                                    <div className="butttts"> March, 10, 2022</div>
+                                    <div className="butttts">***-**-6846</div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,34 @@ const Profile = () => {
                         </div>
                     </div>
                     <hr className="line"></hr>
-                    <div className="person-info">
+                    <div className="contact-info">
+                        <div className="title">
+                            <div class="info-text">Contact Info</div>
+                            <div className="info-text-info">(Editable)</div>
+                        </div>
+                        <div className="info-tags">
+                            <div className="mini-sec-row">
+                                <div className="info-tag">Mobile</div>
+                                <div className="info-tag-wrap">
+                                    <div className="info-tag-desc">
+                                        <div>(123) 456 7890</div>
+                                    </div>
+                                </div>
+                                <hr className="section-break"></hr>
+                            </div>
+                            <div className="mini-sec-row">
+                                <div className="info-tag">Email</div>
+                                <div className="info-tag-wrap">
+                                    <div className="info-tag-desc">
+                                        <div>catcatcatdogcat@cat.com</div>
+                                    </div>
+                                </div>
+                                <hr className="section-break"></hr>
+                            </div>
+                        </div>
+                    </div>
+                    <hr className="line"></hr>
+                    <div className="Recent-info">
                         <div className="title">
                             <div class="info-text">Recent Visits</div>
                             <div className="info-text-info">(Non-Editable)</div>
