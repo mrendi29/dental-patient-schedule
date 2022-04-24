@@ -424,7 +424,7 @@ form .button{
   font-size: 16px;
  }
 
- .profilee{
+ .base{
     z-index: -1;
     position: fixed;
     height: 100%;
@@ -436,7 +436,7 @@ form .button{
     z-index: 100 !important;
 }
 
-.profilee .text{
+.base .text{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 32px;
   font-weight: 500;
@@ -446,7 +446,7 @@ form .button{
   margin-bottom: 24px;
 }
 
-.sidebar.active ~ .profilee{
+.sidebar.active ~ .base{
   /* width: calc(100% - 240px); */
   left: 240px;
 }
@@ -462,6 +462,7 @@ form .button{
    background: #fff;
    padding: 36px;
    border-radius: 12px;
+   overflow: hidden;
  }
 
  img {
@@ -505,6 +506,8 @@ form .button{
   padding: 36px;
   border-radius: 12px;
   margin-top: 24px;
+  height: 5.5in;
+  overflow: auto;
 }
 
 .title{
@@ -553,8 +556,7 @@ form .button{
   margin-top: 24px;
   margin-bottom: 36px;
   background-color: #c7c7c7;
-  height: 1px;
-  border: none;
+  height: .1px;
 }
 
 .info-tag-wrap{
@@ -578,4 +580,115 @@ form .button{
 
 #icon{
   margin-left: 5px;
+}
+
+/*
+Calendar
+*/
+
+.calendar{
+  background-color: #ffffff;
+  overflow: auto;
+  height: 80%;
+  position: absolute;
+}
+
+
+
+/*
+Notification
+*/
+
+.card{
+  text-align: left;
+  background: #ffffff;
+  padding: 36px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-titlebar{
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #61adf5;
+}
+
+.card-date{
+  align-self:baseline;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.card-author{
+  font-size: 14px;
+  font-weight: 600;
+  color: #79beff;
+  margin-bottom: 20px;
+}
+
+.card-content{
+  font-size: 18px;
+  color: rgb(102, 102, 102);
+}
+
+/*
+Settings
+*/
+
+.setting{
+  text-align: left;
+  background: #ffffff;
+  height: 7.5in;
+  padding: 36px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.left{
+  align-content: left;
+  width: 50%;
+  margin-left: 3%;
+}
+
+.setting-title{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #61adf5;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.setting-description{
+  font-size: 18px;
+  color: rgb(102, 102, 102);
+  margin-bottom: 20px;
+}
+
+.btn{
+  background-color: #61adf5; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 344px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 0%;
 }

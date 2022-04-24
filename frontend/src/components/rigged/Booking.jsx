@@ -1,16 +1,17 @@
 import Sidebar from "../general/Sidebar";
 
 
-const Message = () => {
+const Book = () => {
 
     return(
         <div className="wrapper">
             <Sidebar/>
             <div class="profile">
-                <div class="text">Message</div>
+                <div class="text">Booking</div>
             </div>
         </div>
+        
 );
 }
 
-export default Message;
+export default Book;
