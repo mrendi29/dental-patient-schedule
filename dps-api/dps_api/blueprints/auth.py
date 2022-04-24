@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, g, abort, url_for
-from ..model import User
+from ..model import Dentist, Patient, User
 from dps_api import db, auth
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
@@ -15,6 +15,7 @@ def sign_in():
     form = request.form
     username = form.get("username")
     password = form.get("password")
+    user_type = form.get("user_type")
     user = User.verify_auth_token(username)
     if not user:
         # try to authenticate with username/password
@@ -22,7 +23,10 @@ def sign_in():
         if not user or not user.verify_password(password):
             return (jsonify({"error": "Authentication error"}), 401)
     g.user = user
+    g.user_type = user_type
     token = g.user.generate_auth_token(3600)
+
+    # TODO: Return user metadata
     return (
         jsonify({"token": token.decode("ascii"), "duration": 3600, "id": user.user_id}),
         201,
@@ -35,14 +39,29 @@ def sign_up():
     username = form.get("username")
     email = form.get("email")
     password = form.get("password")
+    user_type = form.get("user_type")
+    name = form.get("name")
+    last_name = form.get("last_name")
     if username is None or password is None:
         abort(400)  # missing arguments
     if User.query.filter_by(username=username).first() is not None:
         abort(400)  # existing user
     user = User(email, username, password)
-
     db.session.add(user)
+
+    if user_type == "dentist":
+        dentist = Dentist(name, last_name)
+        user.dentist = dentist
+        db.session.add(dentist)
+    else:
+        birthday = form.get("birthday")
+        cellphone = form.get("cellphone")
+        patient = Patient(name, last_name, birthday, cellphone)
+        user.patient = patient
+        db.session.add(patient)
     db.session.commit()
+
+    # TODO: Return all user metadata to client
     return (
         jsonify({"username": user.username}),
         201,
