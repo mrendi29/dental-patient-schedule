@@ -7,7 +7,7 @@ const Setting = () => {
         <div className="wrapper">
             <Sidebar/>
             <div class="profile">
-                <div class="text">Setting</div>
+                <div class="text">Settings</div>
             </div>
         </div>
 );

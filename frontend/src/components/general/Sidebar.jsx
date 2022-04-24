@@ -36,18 +36,18 @@ const Sidebar = () => {
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="/book">
+                    <a href="/notifications">
+                        <i class='bx bx-chat'></i>
+                        <span class="links_name">Notifications</span>
+                    </a>
+                    <span class="tooltip">Notifications</span>
+                </li>
+                <li>
+                    <a href="/booking">
                         <i class='bx bx-calendar-plus'></i>
                         <span class="links_name">Online Booking</span>
                     </a>
                     <span class="tooltip">Online Booking</span>
-                </li>
-                <li>
-                    <a href="/message">
-                        <i class='bx bx-chat'></i>
-                        <span class="links_name">Messages</span>
-                    </a>
-                    <span class="tooltip">Messages</span>
                 </li>
                 <li>
                     <a href="/calandar">

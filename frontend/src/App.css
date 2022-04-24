@@ -590,3 +590,58 @@ Calendar
   height: 80%;
   position: absolute;
 }
+
+
+
+/*
+notification
+*/
+
+.card{
+  text-align: left;
+  background: #ffffff;
+  padding: 36px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
+
+.card-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-titlebar{
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #61adf5;
+  overflow: hidden;
+}
+
+.card-date{
+  align-self:baseline;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+  margin-left: 10px;
+  margin-top: 10px;
+  overflow:auto;
+}
+
+.card-author{
+  font-size: 14px;
+  font-weight: 600;
+  color: #79beff;
+  overflow-wrap: hidden;
+  margin-bottom: 20px;
+}
+
+.card-content{
+  font-size: 18px;
+  color: rgb(102, 102, 102);
+  overflow-wrap: break-word;
+}
