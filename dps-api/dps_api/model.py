@@ -137,18 +137,22 @@ class Appointment(db.Model):
     dentist = db.relationship(
         "Dentist", back_populates="appointments", lazy=True, uselist=False
     )
-    record_id = db.Column(
-        db.Integer,
-        db.ForeignKey("record.record_id"),
-        nullable=True,
-        index=True,
-    )
-    record = db.relationship(
-        "Record", back_populates="appointments", lazy=True, uselist=False
-    )
 
-    def __init__(self, start_time, patient_accepted, description, notes, **kwargs):
+    record = db.relationship("Record", back_populates="appointments", lazy=True)
+
+    def __init__(
+        self,
+        patient_id,
+        dentist_id,
+        start_time,
+        patient_accepted,
+        description,
+        notes,
+        **kwargs,
+    ):
         super(Appointment, self).__init__(**kwargs)
+        self.patient_id = patient_id
+        self.dentist_id = dentist_id
         self.start_time = start_time
         self.pattient_accepted = patient_accepted
         self.description = description
@@ -175,12 +179,27 @@ class Record(db.Model):
     dentist = db.relationship(
         "Dentist", back_populates="records", lazy=True, uselist=False
     )
-    appointments = db.relationship("Appointment", back_populates="record", lazy=True)
 
-    def __init__(self, description, notes, **kwargs):
+    appointment_id = db.Column(
+        db.Integer,
+        db.ForeignKey("appointment.appointment_id"),
+        nullable=True,
+        index=True,
+    )
+
+    appointments = db.relationship(
+        "Appointment", back_populates="record", lazy=True, uselist=False
+    )
+
+    def __init__(
+        self, patient_id, dentist_id, appointment_id, description, notes, **kwargs
+    ):
         super(Record, self).__init__(**kwargs)
+        self.patient_id = patient_id
+        self.dentist_id = dentist_id
+        self.appointment_id = appointment_id
         self.description = description
         self.notes = notes
 
     def __repr__(self) -> str:
-        return f"Record<{self.patient_id}-{self.dentist_id}>"
+        return f"Record<{self.patient_id}-{self.dentist_id}-{self.appointment_id}>"

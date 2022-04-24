@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify, request
 from ..model import User, Appointment, Dentist, Patient
 from dps_api import db, auth
 
@@ -9,8 +9,18 @@ bp = Blueprint("appointment", __name__, url_prefix="/appointment")
 @auth.login_required
 def new():
     #  Check if time slot is available
-    # Create if yes otherwise pick other time.
-    pass
+    data = request.get_json()
+
+    appointment = Appointment(
+        data.get("patient_id"),
+        data.get("dentist_id"),
+        data.get("start_time"),
+        False,
+        "",
+        "",
+    )
+    db.session.add(appointment).commit()
+    return jsonify({"message": "Sucess"}), 201
 
 
 @bp.route("/<id:int>/update", methods=["PUT"])

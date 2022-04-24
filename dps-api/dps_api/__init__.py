@@ -5,6 +5,7 @@ from werkzeug.utils import find_modules, import_string
 from werkzeug.local import LocalProxy
 from db_utils.typings.sql_alchemy import SQLAlchemy as SQLAlchemyStub
 from flask_httpauth import HTTPBasicAuth
+from flask_cors import CORS
 
 # db = SQLAlchemy()
 db: SQLAlchemyStub = cast(SQLAlchemyStub, SQLAlchemy())
@@ -38,7 +39,7 @@ def create_app(config=None):
         from dps_api import model
 
     app.db = db
-
+    CORS(app=app)
     return app
 
 
