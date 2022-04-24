@@ -54,13 +54,13 @@ class Calandar extends React.Component{
                     <div class="text">Calandar</div>
 
                     <div class="calendar">
-                        <Scheduler data={schedulerData}
+                        <Scheduler dataSource={data}
                             views={views}
                             defaultCurrentView='week'
                             defaultCurrentDate={currentDate}
                             firstDayOfWeek={1}
-                            startDayHour={6}
-                            endDayHour={21}
+                            startDayHour={9}
+                            endDayHour={18}
                         />
                     </div>
                 </div>

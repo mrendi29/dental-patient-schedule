@@ -43,13 +43,6 @@ const Sidebar = () => {
                     <span class="tooltip">Notifications</span>
                 </li>
                 <li>
-                    <a href="/booking">
-                        <i class='bx bx-calendar-plus'></i>
-                        <span class="links_name">Online Booking</span>
-                    </a>
-                    <span class="tooltip">Online Booking</span>
-                </li>
-                <li>
                     <a href="/calandar">
                     <i class='bx bx-calendar' ></i>
                         <span class="links_name">Calendar</span>

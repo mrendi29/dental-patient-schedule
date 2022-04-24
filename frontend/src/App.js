@@ -12,7 +12,6 @@ import Login from './components/general/Login'
 import Register from './components/general/Register'
 import Dashboard from './components/general/Dashboard'
 import Profile from './components/general/Profile';
-import Booking from './components/rigged/Booking';
 import Notifications from './components/rigged/Notifications';
 import Calandar from './components/rigged/Calendar';
 import Setting from './components/rigged/Setting';
@@ -28,7 +27,6 @@ const App = () => {
         <Route exact path='/register' element={<Register/>} />
         <Route exact path='/dashboard' element={<Dashboard/>} />
           {/* <Route exact path='profile' element={<Profile/>} /> */}
-        <Route exact path='/booking' element={<Booking/>} />
         <Route exact path='/notifications' element={<Notifications/>} />
         <Route exact path='/calandar' element={<Calandar/>} />
         <Route exact path='/setting' element={<Setting/>} />
