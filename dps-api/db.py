@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 from dotenv import load_dotenv
 
 load_dotenv()
-if os.getenv("FLASK_ENV", "development"):
+if os.getenv("FLASK_ENV"):
     db_url = os.getenv("SQLALCHEMY_DATABASE_URI")
 else:
     db_url = os.getenv("DATABASE_URL").replace("://", "ql://", 1)
