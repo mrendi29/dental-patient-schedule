@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
+const axios = require('axios').default;
+
 class Register extends Component {
     constructor(){
         super()
@@ -12,40 +14,42 @@ class Register extends Component {
             password: ''
         }
     }
-/***
- * Implement later for auth
-
-    componentDidMount(){
-
-    }
     
-    componentDidUpdate(){
-
-    }    
-*/
-
     onChange = (event) => this.setState({ [event.target.id]: event.target.value }, () => {})
 
     onSubmit = (event) => {
         // Prevent default page refresh
         event.preventDefault()
 
-        const userData = {
-            fullName: this.state.fullName,
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password
+        // const userData = {
+        //     fullName: this.state.fullName,
+        //     username: this.state.username,
+        //     email: this.state.email,
+        //     password: this.state.password
+        // }
+
+
+        const formData = new FormData();
+        formData.append("name", this.state.fullName.split(/(\s+)/)[0]);
+        formData.append("last_name", this.state.fullName.split(/(\s+)/)[1]);
+        formData.append("email", this.state.email);
+        formData.append("password", this.state.password);
+        formData.append("user_type", "patient");
+
+        try {
+            const response = axios.post('https://dps-api.herokuapp.com/auth/signup', formData);
+            console.log(response.data);
+            // verify the response
+            if (response.status == 201){
+                const navigate = useNavigate();
+                navigate('/login');
+            } else {
+                alert(response.data);
+            }
+
+        } catch (error) {
+            alert('Oh no, something went wrong');
         }
-        // later on for registering the user
-        //this.props.registerUser(userData, this.props.history);
-
-    }
-
-    
-
-    handleClick = () => {
-        const navigate = useNavigate();
-        navigate('/login');
     }
 
     render(){
@@ -94,10 +98,10 @@ class Register extends Component {
                         </div>
                         <div class="button">
                             <div class="inner"></div>
-                            {/* <input type="submit" value='REGISTER' /> */}
-                            <div className="rigged-reg">
+                            <input type="submit" value='REGISTER'/>
+                            {/* <div className="rigged-reg">
                                 <a href="/login">REGISTER</a>
-                            </div>
+                            </div> */}
                         </div>
                     </form>
                     <div class="signup">
