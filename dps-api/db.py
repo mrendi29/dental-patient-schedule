@@ -9,7 +9,8 @@ if os.getenv("FLASK_ENV", "development"):
     db_url = os.getenv("SQLALCHEMY_DATABASE_URI")
 else:
     db_url = os.getenv("DATABASE_URL").replace("://", "ql://", 1)
-
+# Debugging heroku
+print(db_url)
 app = create_app(
     config={
         "SQLALCHEMY_DATABASE_URI": db_url,
