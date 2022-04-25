@@ -4,7 +4,7 @@ import os
 if os.getenv("FLASK_ENV"):
     db_url = os.getenv("SQLALCHEMY_DATABASE_URI")
 else:
-    os.getenv("DATABASE_URL").replace("://", "ql://", 1)
+    db_url = os.getenv("DATABASE_URL").replace("://", "ql://", 1)
 
 app = create_app(
     config={
