@@ -1,7 +1,7 @@
 from dps_api import create_app
 import os
 
-if os.getenv("FLASK_ENV", "development"):
+if os.getenv("FLASK_ENV"):
     db_url = os.getenv("SQLALCHEMY_DATABASE_URI")
 else:
     os.getenv("DATABASE_URL").replace("://", "ql://", 1)
