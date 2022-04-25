@@ -57,9 +57,11 @@ const Sidebar = () => {
                     <span class="tooltip">Settings</span>
                 </li>
             </ul>
-            <div class='logout'>
-                <i class='bx bx-log-out'></i>
-            </div>
+            <a href="/">
+                <div class='logout'>
+                    <i class='bx bx-log-out'></i>
+                </div>
+            </a>
         </div>
     );
 }

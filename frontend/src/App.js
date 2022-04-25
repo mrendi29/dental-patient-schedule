@@ -12,9 +12,9 @@ import Login from './components/general/Login'
 import Register from './components/general/Register'
 import Dashboard from './components/general/Dashboard'
 import Profile from './components/general/Profile';
-import Notifications from './components/rigged/Notifications';
-import Calandar from './components/rigged/Calendar';
-import Setting from './components/rigged/Setting';
+import Notifications from './components/mock/Notifications';
+import Calandar from './components/mock/Calendar';
+import Setting from './components/mock/Setting';
 
 
 const App = () => {

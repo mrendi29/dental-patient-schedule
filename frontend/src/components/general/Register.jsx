@@ -98,10 +98,10 @@ class Register extends Component {
                         </div>
                         <div class="button">
                             <div class="inner"></div>
-                            <input type="submit" value='REGISTER'/>
-                            {/* <div className="rigged-reg">
+                            {/* <input type="submit" value='REGISTER'/> */}
+                            <div className="rigged-reg">
                                 <a href="/login">REGISTER</a>
-                            </div> */}
+                            </div>
                         </div>
                     </form>
                     <div class="signup">

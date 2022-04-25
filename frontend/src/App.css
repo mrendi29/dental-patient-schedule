@@ -28,6 +28,9 @@
 
 body{
   height: 100vh;
+  width:100%;
+  margin:0;
+  padding:0;
   display: flex;
   align-items: center;
   text-align: center;
@@ -691,4 +694,68 @@ Settings
   display: inline-block;
   font-size: 16px;
   margin-left: 0%;
+}
+
+/*
+Landing
+*/
+
+.base-container{
+  width: 100%;
+  align-content: center;
+  background-size: cover;
+}
+
+.land-title{
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 5px;
+  margin: 0;
+  position: relative;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 58px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.summary{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 80px;
+  overflow: auto;
+  font-size: 22px;
+  color: #f7f7f7;
+}
+
+.redirect{
+  background-color: #ffffff00;
+  border: 2px solid white;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  border-radius: 500px;
+}
+
+#button-logo{
+  margin-right: 10px;
+}
+
+a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.redirect:hover{
+  background-color: #ffffff;
+  border: 2px solid #96cbfd;
+}
+
+.redirect:hover a{
+  color: #96cbfd !important;
 }
