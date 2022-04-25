@@ -25,10 +25,15 @@ def sign_in():
     g.user = user
     g.user_type = user_type
     token = g.user.generate_auth_token(3600)
-
     # TODO: Return user metadata
     return (
-        jsonify({"token": token.decode("ascii"), "duration": 3600, "id": user.user_id}),
+        jsonify(
+            {
+                "token": token.decode("ascii"),
+                "duration": 3600,
+                "id": user.patient.patient_id,
+            }
+        ),
         201,
     )
 
@@ -63,7 +68,7 @@ def sign_up():
 
     # TODO: Return all user metadata to client
     return (
-        jsonify({"username": user.username}),
+        jsonify({"message": "Success!", "id": patient.patient_id}),
         201,
     )
 

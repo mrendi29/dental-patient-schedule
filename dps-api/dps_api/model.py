@@ -7,8 +7,10 @@ from itsdangerous import (
     TimedJSONWebSignatureSerializer as Serializer,
 )
 from flask import current_app as app
+from dataclasses import dataclass
 
 
+@dataclass
 class User(db.Model):
     __tablename__ = "user"
     user_id = db.Column(db.Integer, primary_key=True, nullable=False, index=True)
@@ -61,6 +63,7 @@ class User(db.Model):
         return f"User -> {self.username}"
 
 
+@dataclass
 class Dentist(db.Model):
     __tablename__ = "dentist"
     dentist_id = db.Column(db.Integer, primary_key=True, nullable=False, index=True)
@@ -85,14 +88,17 @@ class Dentist(db.Model):
         return f"Dentist -> {self.name}:{self.last_name}"
 
 
+@dataclass
 class Patient(db.Model):
     __tablename__ = "patient"
-    patient_id = db.Column(db.Integer, primary_key=True, nullable=False, index=True)
-    name = db.Column(db.String(18), nullable=False, index=True)
-    last_name = db.Column(db.String(18), nullable=False, index=True)
-    birth_date = db.Column(db.DateTime)
-    cellphone = db.Column(db.String(45))
-    user_id = db.Column(
+    patient_id: int = db.Column(
+        db.Integer, primary_key=True, nullable=False, index=True
+    )
+    name: str = db.Column(db.String(18), nullable=False, index=True)
+    last_name: str = db.Column(db.String(18), nullable=False, index=True)
+    birth_date: datetime = db.Column(db.DateTime)
+    cellphone: str = db.Column(db.String(45))
+    user_id: int = db.Column(
         db.Integer, db.ForeignKey("user.user_id"), nullable=False, index=True
     )
     user = db.relationship("User", back_populates="patient", lazy=True, uselist=False)
@@ -100,7 +106,7 @@ class Patient(db.Model):
     appointments = db.relationship("Appointment", back_populates="patient", lazy=True)
     records = db.relationship("Record", back_populates="patient", lazy=True)
 
-    dentist_id = db.Column(
+    dentist_id: int = db.Column(
         db.Integer, db.ForeignKey("dentist.dentist_id"), nullable=True
     )
     dentist = db.relationship(

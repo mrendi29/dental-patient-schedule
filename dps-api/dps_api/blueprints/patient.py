@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from ..model import User, Appointment, Dentist, Patient
 from dps_api import db, auth
 
@@ -13,9 +13,9 @@ def logged_user():
 
 
 @bp.route("/<int:id>")
+@auth.login_required
 def get_patient(id):
-    # Return patient
-    pass
+    return jsonify(Patient.query.filter_by(patient_id=id).first()), 201
 
 
 @bp.route("/list_dentists")
