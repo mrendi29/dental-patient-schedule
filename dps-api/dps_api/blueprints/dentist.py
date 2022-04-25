@@ -5,7 +5,7 @@ from dps_api import db, auth
 bp = Blueprint("dentist", __name__, url_prefix="/dentist")
 
 
-@bp.route("hi")
+@bp.route("/hi")
 @auth.login_required
 def hi():
 
@@ -16,7 +16,7 @@ def hi():
     return " ".join([user.email for user in User.query.all()])
 
 
-@bp.route("dentists")
+@bp.route("/dentists")
 @auth.login_required
 def get_dentists():
     return jsonify(

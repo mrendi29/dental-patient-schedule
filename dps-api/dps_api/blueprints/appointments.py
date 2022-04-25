@@ -23,7 +23,7 @@ def new():
     return jsonify({"message": "Sucess"}), 201
 
 
-@bp.route("/<id:int>/update", methods=["PUT"])
+@bp.route("/<int:id>/update", methods=["PUT"])
 @auth.login_required
 def update(id):
     # TODO: Get appointment
