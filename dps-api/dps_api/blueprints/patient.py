@@ -12,7 +12,7 @@ def logged_user():
     pass
 
 
-@bp.route("/<id:int>")
+@bp.route("/<int:id>")
 def get_patient(id):
     # Return patient
     pass
@@ -25,13 +25,13 @@ def list_dentists():
     pass
 
 
-@bp.route("/<id:int>/pick_dentist", methods=["POST"])
+@bp.route("/<int:id>/pick_dentist", methods=["POST"])
 def pick_dentist(id):
     # Update dentist for patient
     pass
 
 
-@bp.route("/<id:int>/reserved_slots", methods=["GET"])
+@bp.route("/<int:id>/reserved_slots", methods=["GET"])
 @auth.login_required
 def reserved_slots(id):
     # Find Dentist from patient
@@ -39,7 +39,7 @@ def reserved_slots(id):
     pass
 
 
-@bp.route("<id:int>/schedule", methods=["POST"])
+@bp.route("<int:id>/schedule", methods=["POST"])
 @auth.login_required
 def schedule_appointment(id):
     # Get patient
