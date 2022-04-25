@@ -65,7 +65,6 @@ def sign_up():
     return (
         jsonify({"username": user.username}),
         201,
-        {"Location": url_for("auth.get_user", id=user.user_id, _external=True)},
     )
 
 
