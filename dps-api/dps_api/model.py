@@ -90,8 +90,8 @@ class Patient(db.Model):
     patient_id = db.Column(db.Integer, primary_key=True, nullable=False, index=True)
     name = db.Column(db.String(18), nullable=False, index=True)
     last_name = db.Column(db.String(18), nullable=False, index=True)
-    birth_date = db.Column(db.DateTime, nullable=False)
-    cellphone = db.Column(db.String(45), nullable=False)
+    birth_date = db.Column(db.DateTime)
+    cellphone = db.Column(db.String(45))
     user_id = db.Column(
         db.Integer, db.ForeignKey("user.user_id"), nullable=False, index=True
     )
@@ -122,7 +122,7 @@ class Appointment(db.Model):
     __tablename__ = "appointment"
     appointment_id = db.Column(db.Integer, primary_key=True, nullable=False, index=True)
     start_time = db.Column(db.DateTime, nullable=False, index=True)
-    pattient_accepted = db.Column(db.Boolean, nullable=False, default=False)
+    pattient_accepted = db.Column(db.Boolean, default=False)
     description = db.Column(db.Text)
     notes = db.Column(db.Text)
     patient_id = db.Column(
