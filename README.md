@@ -16,6 +16,7 @@ The application consists of a single page in which we render different component
 
 		> cd dental-patient-schedule/api 
 		> poetry install
+	- Note: You also need to create a .env file for the api. An example is atached on the API directory
 	
 -  For the UI
  
