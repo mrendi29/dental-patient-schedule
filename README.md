@@ -34,6 +34,7 @@ The application consists of a single page in which we render different component
 
         > cd dental-patient-schedule/api
         > poetry shell
+        > python3 db.py
         > flask run
 
 3. Open up a third shell for the webapp.
